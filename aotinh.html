@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Math</title>
+    <style>
+        /* Đặt mã CSS ở đây (giữ nguyên mã CSS từ trước) */
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
+
+    .card {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 500px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin: 10px 0;
+    }
+
+    select, input, button {
+        margin: 10px 0;
+    }
+
+    button {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .col {
+        flex: 1;
+    }
+    </style>
+</head>
+<body>
+    <div class="card p-0">
+        <div id="divLogin" class="p-40 text-left">
+            <div class="row m-t-20">
+                <div class="col-md-3">
+                    <label for="selTime">Thời Gian (giây):</label>
+                    <select id="selTime" class="form-control">
+                        <option value="0.5">0.5</option>
+                        <option value="1">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
+                        <!-- Thêm các tùy chọn thời gian khác ở đây -->
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="selOperator">Phép Toán:</label>
+                    <select id="selOperator" class="form-control">
+                        <option value="+">Cộng (+)</option>
+                        <option value="-">Trừ (-)</option>
+                        <option value="*">Nhân (*)</option>
+                        <option value="/">Chia (/)</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="selRow">Độ Dài Dãy Số:</label>
+                    <select id="selRow" class="form-control">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <!-- Thêm các tùy chọn độ dài khác ở đây -->
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button onclick="startGame()" type="button" id="btnStart" class="btn btn-lg btn-block">BẮT ĐẦU</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <h1 id="hDisplayNumber" class="num-math"></h1>
+                <div class="row">
+                    <div class="col-auto xs-width-100-percent">
+                        <input type="text" class="form-control m-t-25 xs-mt-0" id="txtResultInput" placeholder="Nhập kết quả">
+                    </div>
+                    <div class="col">
+                        <button style="padding-top: 12.5px; padding-bottom: 12.5px" onclick="checkAnswer()" type="button" id="btnFinish" class="btn btn-lg btn-block hidden">KIỂM TRA</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+        let questions = [];
+        let timer;
+
+        // Tạo danh sách câu hỏi
+        function generateQuestions() {
+            let operator = document.getElementById("selOperator").value;
+            let rowCount = parseInt(document.getElementById("selRow").value);
+
+            for (let i = 0; i < rowCount; i++) {
+                let operand1 = Math.floor(Math.random() * 11); // Chọn số ngẫu nhiên từ 0 đến 10
+                let operand2 = Math.floor(Math.random() * 11); // Chọn số ngẫu nhiên từ 0 đến 10
+                let result;
+
+                switch (operator) {
+                    case "+":
+                        result = operand1 + operand2;
+                        break;
+                    case "-":
+                        result = operand1 - operand2;
+                        break;
+                    case "*":
+                        result = operand1 * operand2;
+                        break;
+                    case "/":
+                        result = operand1 / operand2;
+                        break;
+                }
+
+                questions.push({
+                    operand1,
+                    operand2,
+                    operator,
+                    result
+                });
+            }
+        }
+
+        // Hiển thị câu hỏi
+        function displayQuestion() {
+            if (currentQuestion < questions.length) {
+                let question = questions[currentQuestion];
+                let displayText = `${question.operand1} ${question.operator} ${question.operand2} = ?`;
+                document.getElementById("hDisplayNumber").textContent = displayText;
+                currentQuestion++;
+            } else {
+                clearInterval(timer);
+                document.getElementById("btnFinish").classList.remove("hidden");
+                document.getElementById("btnStart").disabled = false;
+            }
+        }
+
+        // Bắt đầu trò chơi
+        function startGame() {
+            currentQuestion = 0;
+            questions = [];
+            generateQuestions();
+            displayQuestion();
+            let time = parseFloat(document.getElementById("selTime").value) * 1000; // Chuyển đổi thời gian thành mili giây
+            timer = setInterval(displayQuestion, time);
+            document.getElementById("btnStart").disabled = true;
+        }
+
+        // Kiểm tra câu trả lời
+        function checkAnswer() {
+            let userAnswer = parseInt(document.getElementById("txtResultInput").value);
+            let correctAnswer = questions[currentQuestion - 1].result;
+            if (userAnswer === correctAnswer) {
+                alert("Câu trả lời đúng!");
+            } else {
+                alert("Câu trả lời sai. Hãy thử lại.");
+            }
+        }
+    </script>
+</body>
+</html>

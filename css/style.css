@@ -1,0 +1,297 @@
+*{
+    padding: 0;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    padding: auto ;
+    margin: auto;
+
+}
+/*tiêu đề*/
+.tieude{
+    max-width: 1500px;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+.text1{
+    font-weight: bold;
+    font-size: 40px;
+    color: #131921;
+    padding: 30px 10px;
+}
+.logo-head{
+    padding: 5px 0px;
+}
+.logo-head img{
+    max-width: 200px;
+    height: auto;
+}
+.hassub-menu{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.hassub-menu li a{
+    color: black;
+    display: block;
+    padding: 30px 20px;
+    text-decoration: none;
+}
+
+.container{
+    width: 1200px;
+    margin:  auto;
+}
+.void{
+    height: 55px;
+    
+}
+
+.color{
+    background-color:rgb(119, 206, 240);
+}
+.xe-ben{
+    max-width: 1500px;
+    margin: 0px auto;
+    padding: auto;
+    
+}
+.cam b{
+    font-size: 40px;
+    font-family: cursive, sans-serif;
+    color: rgb(248, 131, 53);
+    padding: 0px
+}
+.xanh b{
+    font-size: 40px;
+    font-family: cursive, sans-serif;
+    color: rgb(62, 158, 202);
+    float: left;
+}
+.stone{
+    max-height: 1000px;
+    margin: 64px auto;
+    background-color: #131921;
+    margin-top: 100px;
+
+    
+;
+   
+   
+        
+    
+}
+nav{
+    display: flex;
+}
+.imghd{
+    padding: 3px 0px;
+}
+.imghd img{
+    max-width: 50px;
+    height: auto;
+}
+.main-menu{
+    display: flex;
+    list-style: none;
+    margin: auto;
+    padding: -12px 336px;
+    right: 0;
+    transition: 0.03s;
+}
+.main-menu li{
+    position: relative;
+}
+.main-menu li a{
+    color: #c40505;
+    display: block;
+    padding: 10px 40px;
+    text-decoration: none;
+}
+.main-menu ul.sub-menu{
+    position: absolute;
+    background-color: #131921;
+    padding: 15px 0px;
+    list-style: none;
+    width: 200px;
+    border: 1px solid #434343;
+    display: none;
+}
+.main-menu li:hover>ul.sub-menu {
+    display: block;
+}
+.main-menu ul.sub-menu a{
+    padding: 8px 15px;
+    border-bottom: 1px solid #434343;
+}
+.main-menu ul.sub-menu li:hover>a{
+    border-bottom: 1px solid #6e6e6e;
+}
+.main-menu ul.sub-menu li:last-child a{
+    border: none;
+}
+/*
+.main-menu{
+   display: flex;
+   list-style: none;
+   margin: 0;
+    padding: 0;
+    
+}*/
+ /*Thiết lập border khi hover*/
+ .main-menu>li>a{
+    position: relative;
+ }
+.main-menu>li>a::before{
+    content: "";
+    height: 4px;
+    width: 0px;
+    background: #f00;
+    position: absolute;
+    bottom: -15px;
+    left: 0px;
+    transition: 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.main-menu>li:hover>a::before{
+    width: 100%;
+}
+/*----------------------*/
+.main-menu .sub-menu li:hover a{
+    color: red;
+}
+.main-menu>li.has-child::after{
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f107";
+    color: #f5f5f5;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+}
+/*phần đuôi*/
+footer{
+    width: auto;
+    height: 100px;
+    line-height: 30px;
+    text-align: left;
+    font-size: 20px;
+    background-color: rgb(0, 0, 0);
+    padding: 7px 80px;
+    color: white;
+}
+.fixed-element {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+   
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+}
+.box {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    margin: 10px;
+}
+  
+.image-box {
+    background-image: url('đường dẫn đến hình ảnh của bạn');
+    background-size: cover;
+    background-position: center;
+}
+
+/* CSS để tạo kiểu cho sidebar */
+.sidebar {
+  width: 200px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  float: right;
+}
+
+/* CSS để tạo kiểu cho nội dung trong sidebar */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 8px;
+  text-decoration: none;
+  
+}
+
+.sidebar a:hover {
+  background-color: #555;
+  color: white;
+
+}
+/* CSS để tạo kiểu cho hình ảnh trong sidebar */
+.sidebar img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+/*css chỉnh khung*/
+.box {
+    width: 200px;
+    height: 200px;
+    padding: 76px;
+    font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 30px;
+    margin: 17px;
+   
+}
+  
+  .image-box {
+    background-image: url('đường dẫn đến hình ảnh của bạn');
+    background-size: cover;
+    background-position: center;   
+}
+.products{
+    display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.arc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fixed-element {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+   
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+}
+.wrapper{
+    max-width: 1200px;
+    margin: auto;
+}
+.main-content{
+    display: flex;
+}
+.content{
+    flex-basis: 70%;
+}
+.sidebar{
+    flex-basis:30%; 
+}
